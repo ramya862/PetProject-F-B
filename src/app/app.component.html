@@ -1,0 +1,54 @@
+<table class="center" *ngIf="!add">
+  <caption><h2><b>Employee Details</b></h2></caption>
+  <tr>
+    <th>Name</th>    
+    <th>Id</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>DOB</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>UpdateEmp</th>
+    <th>DeleteEmp</th>
+
+
+  </tr>
+  <tr *ngFor="let emp of service.employees">
+    <td>{{emp.name}}</td>
+    <td>{{emp.id}}</td>
+    <td>{{emp.Gender}}</td>
+    <td>{{emp.Age}}</td>
+    <td>{{emp.DOB}}</td>
+    <td>{{emp.Email}}</td>
+    <td>{{emp.phone}}</td>
+    <td><button class="u" (click)="onUpdEmp(emp.id)" ><b>Update</b></button></td>
+    <td><button class="d" (click)="onDelEmp(emp.id)"><b>Delete</b></button></td>
+
+  </tr>
+  <tr>
+    <button class="a" (click)="addEmployee()"><b>Add Employee</b></button>
+  </tr>
+</table>
+<div class="form" *ngIf="add">
+  <form [formGroup]="reactiveForm"  #empform="ngForm" (ngSubmit)="onEmpCreate(empform.value)">
+    <legend id="regform"><b><h2>Registration form</h2></b></legend>
+    <p><b>Fields marked with (*)are mandatory</b></p>
+    <p><b>* Name</b></p>
+    <input type="text" placeholder=" your first name..." formControlName="Name" name="ename" ngModel required>
+    <p><b>* Email</b></p>
+    <input type="email" placeholder="email id.." formControlName="Email" name="eemail" ngModel>
+    <p><b>* Phoneno</b></p>
+    <input type="text" placeholder="Phoneno.." formControlName="Phoneno" name="ephn" ngModel>
+    <p><b>* Age</b></p>
+    <input type="number" placeholder="age.." formControlName="Age" name="eage" ngModel>
+    <p><b>* Gender</b></p>
+    <input type="text" placeholder="Gender.." formControlName="Gender" name="egen" ngModel>
+    <p><b>* DOB</b></p>
+    <input type="text" placeholder="DOB.." formControlName="DOB" name="edob" ngModel><br><br>
+    <input type="submit"  class="a"value="add emp"> <button class="b" (click)="back()">Back</button>
+
+  </form>
+</div>
+<div class="d" *ngIf="del">
+  <h3>Do you want to delete the employee permanently </h3>
+</div>
