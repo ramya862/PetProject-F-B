@@ -1,6 +1,7 @@
-<table class="center" *ngIf="!add">
+<table class="center" *ngIf="!add && !del">
   <caption><h2><b>Employee Details</b></h2></caption>
   <tr>
+    <th>S.No</th>
     <th>Name</th>    
     <th>Id</th>
     <th>Gender</th>
@@ -8,12 +9,13 @@
     <th>DOB</th>
     <th>Email</th>
     <th>Phone</th>
-    <th>UpdateEmp</th>
-    <th>DeleteEmp</th>
+    <th>Edit</th>
+    <th>Delete</th>
 
 
   </tr>
-  <tr *ngFor="let emp of service.employees">
+  <tr *ngFor="let emp of service.employees;let i=index">
+    <td>{{i+1}}</td>
     <td>{{emp.name}}</td>
     <td>{{emp.id}}</td>
     <td>{{emp.Gender}}</td>
@@ -21,34 +23,47 @@
     <td>{{emp.DOB}}</td>
     <td>{{emp.Email}}</td>
     <td>{{emp.phone}}</td>
-    <td><button class="u" (click)="onUpdEmp(emp.id)" ><b>Update</b></button></td>
-    <td><button class="d" (click)="onDelEmp(emp.id)"><b>Delete</b></button></td>
+    <td><button  (click)="onUpdEmp(emp.id)" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdkQv-KSXzy6iqK4d7DLJT49UnbL29EBGPmA&usqp=CAU"></button></td>
+    <td><button (click)="dclick(emp.id)"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRshBj8EAyziKs0b0-tc9gw5DVjk_sVjTv1Gg&usqp=CAU"></button></td>
 
   </tr>
   <tr>
-    <button class="a" (click)="addEmployee()"><b>Add Employee</b></button>
+    <button class="a" (click)="addEmployee()"><b>Add Emp</b></button>
   </tr>
 </table>
 <div class="form" *ngIf="add">
-  <form [formGroup]="reactiveForm"  #empform="ngForm" (ngSubmit)="onEmpCreate(empform.value)">
-    <legend id="regform"><b><h2>Registration form</h2></b></legend>
-    <p><b>Fields marked with (*)are mandatory</b></p>
-    <p><b>* Name</b></p>
-    <input type="text" placeholder=" your first name..." formControlName="Name" name="ename" ngModel required>
-    <p><b>* Email</b></p>
-    <input type="email" placeholder="email id.." formControlName="Email" name="eemail" ngModel>
-    <p><b>* Phoneno</b></p>
-    <input type="text" placeholder="Phoneno.." formControlName="Phoneno" name="ephn" ngModel>
-    <p><b>* Age</b></p>
-    <input type="number" placeholder="age.." formControlName="Age" name="eage" ngModel>
-    <p><b>* Gender</b></p>
-    <input type="text" placeholder="Gender.." formControlName="Gender" name="egen" ngModel>
-    <p><b>* DOB</b></p>
-    <input type="text" placeholder="DOB.." formControlName="DOB" name="edob" ngModel><br><br>
-    <input type="submit"  class="a"value="add emp"> <button class="b" (click)="back()">Back</button>
+  <form [formGroup]="reactiveForm">
+    <legend id="regform" ><b><h2 class="e">Employee Information</h2></b></legend>
+    <p><b>Name</b></p>
+    <input type="text" placeholder=" your first name..." formControlName="name" required>
+    <p><b>Email</b></p>
+    <input type="email" placeholder="email id.." formControlName="Email" >
+    <p><b>Phone</b></p>
+    <input type="text" placeholder="Phoneno.." formControlName="phone" >
+    <p><b>Gender</b></p>
+    <input type="radio" value="Male" formControlName="Gender" class="g" >Male
+    <input type="radio" value="FeMale" formControlName="Gender" class="g" >Female
+
+    <p ><b>DOB</b></p>
+    <input type="date" placeholder="DOB.." formControlName="DOB" [formControl]="myFormControlDOB" (input)="calculateage()" ><br><br>
+    <p><b>Age</b></p>
+    <input type="number" placeholder="age.." formControlName="Age" [formControl]="myFormControlAge"><br><br>
+    <button *ngIf="!addbutton" class="s" (click)="savemp(reactiveForm.value)"><b>Save</b></button><br>
+    <button class="add" (click)="onEmpCreate(reactiveForm.value)" *ngIf="addbutton"><b>Add</b></button><br>
+    <br><button class="b" (click)="back()"><b>Back</b></button>
 
   </form>
 </div>
-<div class="d" *ngIf="del">
-  <h3>Do you want to delete the employee permanently </h3>
+<div class="delete"*ngIf="del">
+    <h3>Do you want to delete the employee permanently? </h3>
+  <button class="y"  (click)="onDelEmp()"><b>Yes</b></button>  
+  <button class="n" (click)="no()"><b>No</b></button>
 </div>
+
+<div  class="delete"*ngIf="deleted">
+  <button class="b" (click)="back()"><b>Back</b></button>
+
+</div>
+
+
+

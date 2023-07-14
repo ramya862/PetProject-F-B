@@ -17,10 +17,17 @@ color:white;
 
   }
   tr:hover {background-color: rgb(216, 223, 228);}
+  table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:hover td {
+    background-color: #cbd0d1;
+  }
 .center
 {
     margin-left: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-right: auto;
 }
 .d{
@@ -31,24 +38,74 @@ color:white;
     border-radius: 20%;
 }
 .u{
-    background-color: rgb(15, 127, 15);
+    background-color: rgb(25, 152, 25);
     color:white;
     height: 30px;
     width:60px;
     border-radius: 20%;
 }
+.s
+{
+  background-color: rgb(25, 159, 25);
+    color:white;
+    height: 30px;
+    width:60px;
+}
 .a
 {
     background-color: rgb(23, 113, 240);
     color:white;
-    height: 40px;
-    width:90px;
+    height: 50px;
+    width:80px;
     text-align: center;
     display: flex;
             justify-content: center;
             align-items: center;
 
 
+}
+.y
+{
+background-color:red;
+  color:white;
+  height: 30px;
+  width:60px;
+  text-align: center;
+  display: flex;
+          justify-content: center;
+          align-items: center;
+}
+.n{
+  background-color:green;
+  color:white;
+  height: 30px;
+  width:60px;
+  text-align: center;
+  display: flex;
+          justify-content: center;
+          align-items: center;
+}
+.submit
+{
+  background-color: green;
+  height: 40px;
+  width:90px;
+  color:white;
+
+}
+img{
+  height:20px;
+  width:30px;
+}
+input[type=text], select {
+  width: 50%;
+  padding: 5px 40px;
+ 
+}
+input[type=email]
+{
+  width:50%;
+  padding: 5px 40px;
 }
 button.u:hover {background-color: rgb(13, 243, 32);}
 button.a:hover {background-color: rgb(6, 39, 251);}
@@ -66,12 +123,12 @@ button.d:hover {background-color: rgb(175, 52, 4);}
       {
         border:red 1px solid;
       }
-      .b
+.b
 {
-    background-color: rgb(216, 35, 244);
+    background-color:red;
     color:white;
-    height: 40px;
-    width:90px;
+    height: 30px;
+    width:60px;
     text-align: center;
     display: flex;
             justify-content: center;
@@ -79,3 +136,26 @@ button.d:hover {background-color: rgb(175, 52, 4);}
 
 
 }
+.delete
+{
+  background-color: rgb(228, 230, 230);
+  padding: 20px;
+  margin-left: 33%;
+    margin-right: 43%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+.add
+{
+  background-color: blue;
+  height:30px;
+  width:60px;
+  color:white;
+}
+.e{
+  color:rgb(24, 24, 71)
+}
+h2{
+  color:rgb(15, 15, 74);
+}
+
