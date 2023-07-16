@@ -119,10 +119,10 @@ button.d:hover {background-color: rgb(175, 52, 4);}
     margin-bottom: 5%;
     
       }
-      input.ng-invalid.ng-touched
-      {
-        border:red 1px solid;
-      }
+input.ng-invalid.ng-touched
+{
+   border:red 1px solid;
+}
 .b
 {
     background-color:red;

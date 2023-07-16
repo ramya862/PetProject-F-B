@@ -1,9 +1,9 @@
 <table class="center" *ngIf="!add && !del">
   <caption><h2><b>Employee Details</b></h2></caption>
   <tr>
-    <th>S.No</th>
-    <th>Name</th>    
+    <!--th>S.No</th-->
     <th>Id</th>
+    <th>Name</th>    
     <th>Gender</th>
     <th>Age</th>
     <th>DOB</th>
@@ -15,9 +15,9 @@
 
   </tr>
   <tr *ngFor="let emp of service.employees;let i=index">
-    <td>{{i+1}}</td>
-    <td>{{emp.name}}</td>
+    <!--td>{{i+1}}</td--->
     <td>{{emp.id}}</td>
+    <td>{{emp.name}}</td>
     <td>{{emp.Gender}}</td>
     <td>{{emp.Age}}</td>
     <td>{{emp.DOB}}</td>
@@ -34,20 +34,23 @@
 <div class="form" *ngIf="add">
   <form [formGroup]="reactiveForm">
     <legend id="regform" ><b><h2 class="e">Employee Information</h2></b></legend>
+  
+    <p *ngIf="createid"><b>Id</b><br><br>
+    <input type="text" placeholder="Enter the id..." formControlName="id" required></p>
     <p><b>Name</b></p>
-    <input type="text" placeholder=" your first name..." formControlName="name" required>
+    <input type="text" placeholder=" Enter the name..." formControlName="Name" required>
     <p><b>Email</b></p>
-    <input type="email" placeholder="email id.." formControlName="Email" >
+    <input type="email" placeholder="Enter the email id.." formControlName="Email" >
     <p><b>Phone</b></p>
-    <input type="text" placeholder="Phoneno.." formControlName="phone" >
+    <input type="text" placeholder=" Enter the phoneno.." formControlName="Phone" >
     <p><b>Gender</b></p>
     <input type="radio" value="Male" formControlName="Gender" class="g" >Male
     <input type="radio" value="FeMale" formControlName="Gender" class="g" >Female
 
     <p ><b>DOB</b></p>
-    <input type="date" placeholder="DOB.." formControlName="DOB" [formControl]="myFormControlDOB" (input)="calculateage()" ><br><br>
+    <input type="text" placeholder="Enter the DOB.." formControlName="DOB" [formControl]="myFormControlDOB" (input)="calculateage()" required><br><br>
     <p><b>Age</b></p>
-    <input type="number" placeholder="age.." formControlName="Age" [formControl]="myFormControlAge"><br><br>
+    <input type="text" placeholder="Your age.." formControlName="Age" [formControl]="myFormControlAge" readonly><br><br>
     <button *ngIf="!addbutton" class="s" (click)="savemp(reactiveForm.value)"><b>Save</b></button><br>
     <button class="add" (click)="onEmpCreate(reactiveForm.value)" *ngIf="addbutton"><b>Add</b></button><br>
     <br><button class="b" (click)="back()"><b>Back</b></button>
