@@ -24,16 +24,20 @@ ngOnInit()
   this.reactiveForm=this.formBuilder.group(
     {
  id:new FormControl(null,Validators.required),
- Name:new FormControl(null,[Validators.maxLength(100)]),
+ Name:new FormControl(null,[Validators.maxLength(100),Validators.pattern('^[A-Z][a-zA-Z]*$')]),
  Email:new FormControl(null,[Validators.required,Validators.email]),
- Phone:new FormControl(null,[Validators.required,Validators.maxLength(10)]),
+ Phone:new FormControl(null,[Validators.required,Validators.minLength(10),Validators.pattern('^[0-9]+$')]),
  Gender:new FormControl('Male'),
+//  DOB:this.myFormControlDOB.addValidators([Validators.pattern('?:19|20)\\d\\d)-(0?[1-9]|1[012])-([12][0-9]|3[01]|0?[1-9]')]),
+// DOB:this.myFormControlDOB.addValidators([Validators.pattern('\d{4}-\d{2}-\d{2}')]),
+// DOB:this.myFormControlDOB.addValidators([Validators.pattern('^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$')]),
 DOB:this.myFormControlDOB,
  Age:this.myFormControlAge
     }
    );
 }
 createid:boolean=false;
+mybool:boolean=false;
 onEmpCreate(emp:{id:string,Name:string,Email:string,Phone:string,Gender:string,DOB:string,Age:string})
 {
   this.createid=true;
@@ -160,20 +164,24 @@ delemp()
   addbutton:boolean=true;
   presentage!:number;
 date:string='';
+v:string='';
 myFormControlDOB=new FormControl();
 // dob:any=this.myFormControlDOB.value;
 myFormControlAge=new FormControl();
 myformcontrolid=new FormControl();
+
 calculateage()
 {
-  console.log("DOB Value",this.myFormControlDOB.value
-  )
+console.log("DOB Value",this.myFormControlDOB.value);
 const seldate=new Date(this.myFormControlDOB.value);
 const year=new Date().getFullYear();
 const syear=seldate.getFullYear();
 this.displayage=year-syear;
+if (isNaN(this.displayage)) this.displayage = '';
 this.myFormControlAge.setValue(this.displayage);
-console.log("my age",this.myFormControlAge.value)
+console.log(this.myFormControlAge.value);
+
+
 }
 clearform()
 {
@@ -214,7 +222,7 @@ selectedid!:string;
 id!:string;
 [x: string]: any;
 add:boolean=false;
-displayage:number=0;
+displayage:any=0;
 result:number=0;
 
 

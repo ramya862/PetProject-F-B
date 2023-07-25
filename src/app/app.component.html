@@ -47,10 +47,10 @@
     <input type="radio" value="Male" formControlName="Gender" class="g" >Male
     <input type="radio" value="FeMale" formControlName="Gender" class="g" >Female
 
-    <p ><b>DOB</b></p>
+    <p ><b>DOB(yyyy-mm-dd)</b></p>
     <input type="text" placeholder="Enter the DOB.." formControlName="DOB" [formControl]="myFormControlDOB" (input)="calculateage()" required><br><br>
     <p><b>Age</b></p>
-    <input type="text" placeholder="Your age.." formControlName="Age" [formControl]="myFormControlAge" readonly><br><br>
+    <input type="text" placeholder="Your age.." formControlName="Age" [formControl]="myFormControlAge"  readonly><br><br>
     <button *ngIf="!addbutton" class="s" (click)="savemp(reactiveForm.value)"><b>Save</b></button><br>
     <button class="add" (click)="onEmpCreate(reactiveForm.value)" *ngIf="addbutton"><b>Add</b></button><br>
     <br><button class="b" (click)="back()"><b>Back</b></button>
